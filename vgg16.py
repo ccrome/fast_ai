@@ -69,7 +69,8 @@ class Vgg16():
             include_top=False
 
         model = self.model = Sequential()
-        model.add(Lambda(vgg_preprocess, input_shape=(3,)+size))
+        first_layer_shape = (3,)+size
+        model.add(Lambda(vgg_preprocess, input_shape=first_layer_shape, output_shape=first_layer_shape))
 
         self.ConvBlock(2, 64)
         self.ConvBlock(2, 128)
